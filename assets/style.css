@@ -132,6 +132,11 @@ header {
 #banner .arrow_right {
 	right: 10px;
 }
+
+#banner .tagLine {
+	
+}
+
 /* Gestion des points du carrousel */
 .dots {
 	position: absolute;

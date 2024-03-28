@@ -24,7 +24,6 @@ const dots = document.querySelector(".dots");
 let bannerImgClass = document.querySelector(".banner-img");
 let imagesFullPath = document.querySelector(".banner-img").src;
 let imagesFilename = imagesFullPath.replace(/^.*[\\\/]/, "");
-let bannerTagLine = document.querySelector(".bannerTag");
 
 //CREATION DES DOTS----------------------------------------------------------------------------------------
 
@@ -35,9 +34,10 @@ for (let i = 0; i < slides.length; i++) {
 
   if (imagesFilename == slides[i].image) {
     div.className = "dot dot_selected";
-    // div.classList.add("active");
-    // dots.classList.add("dot_selected");
-  } // ajoute classe à image affichée
+  } else {
+    // div.className = "dot";
+    div.classList.remove("dot_selected");
+  }
 }
 
 //CREATION DES ARROWS ----------------------------------------------------------------------------------------
@@ -46,18 +46,46 @@ const left = document.querySelector(".arrow_left"); //récupérer notre balise h
 const right = document.querySelector(".arrow_right");
 let indexActuel = 0;
 
+let bannerTagLine = document.querySelector(".bannerTag");
+let slidesIndex = slides[indexActuel].tagLine;
+let htmlText = ` ${slidesIndex} `;
+console.log(htmlText);
+
 left.addEventListener("click", () => {
   indexActuel -= 1;
   if (indexActuel < 0) {
     indexActuel = slides.length - 1;
   }
-  // removeSelectedDotClass(indexActuel);
+  bannerTagLine.innerHTML = htmlText;
   bannerImgClass.src = "./assets/images/slideshow/" + slides[indexActuel].image;
-  bannerTagLine.innerHTML = ` ${slides[indexActuel].tagLine} `;
-  const dotActuallySelected = document.querySelector(".dot_selected");
-  dotActuallySelected.classList.remove("dot_selected");
-  dots.children[indexActuel].classList.add("dot_selected");
+  // bannerTagLine = slides[indexActuel].tagLine;
 });
+console.log(bannerTagLine.innerHTML);
+
+// left.addEventListener("click", () => {
+//   indexActuel -= 1;
+//   if (indexActuel < 0) {
+//     indexActuel = slides.length - 1;
+//   }
+//   bannerTagLine = `
+//   <p>
+//   ${slides[indexActuel].tagLine}
+//   </p>
+//   `;
+// });
+
+// let bannerTagLine = document.querySelector(".bannerTag").innerText;
+// let slidesIndex = slides[indexActuel].tagLine;
+// let htmlText = ` <p>${slidesIndex}</p> `;
+
+// left.addEventListener("click", () => {
+//   indexActuel -= 1;
+//   if (indexActuel < 0) {
+//     indexActuel = slides.length - 1;
+//   }
+//   bannerTagLine = htmlText;
+// });
+// console.log(bannerTagLine);
 
 right.addEventListener("click", () => {
   indexActuel += 1;
@@ -65,8 +93,6 @@ right.addEventListener("click", () => {
     indexActuel = 0;
   }
   bannerImgClass.src = "./assets/images/slideshow/" + slides[indexActuel].image;
-  bannerTagLine.innerHTML = ` ${slides[indexActuel].tagLine} `;
-  const dotActuallySelected = document.querySelector(".dot_selected");
-  dotActuallySelected.classList.remove("dot_selected");
-  dots.children[indexActuel].classList.add("dot_selected");
 });
+
+// baliseImage.setAttribute("alt", "Ceci est la nouvelle valeur de alt");
