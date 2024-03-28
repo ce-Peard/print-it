@@ -29,12 +29,14 @@ let bannerTagLine = document.querySelector(".bannerTag");
 //CREATION DES DOTS----------------------------------------------------------------------------------------
 
 for (let i = 0; i < slides.length; i++) {
-  let div = document.createElement("div");
-  div.className = "dot";
-  dots.appendChild(div);
+  let division = document.createElement("div");
+  division.className = "dot";
+  console.log(dots);
+
+  dots.appendChild(division);
 
   if (imagesFilename == slides[i].image) {
-    div.className = "dot dot_selected";
+    division.className = "dot dot_selected";
     // div.classList.add("active");
     // dots.classList.add("dot_selected");
   } // ajoute classe à image affichée
